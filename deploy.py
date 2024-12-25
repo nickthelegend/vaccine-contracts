@@ -18,7 +18,7 @@ app_id, addr, txid = app_client.create()
 print("App ID: ", app_id)
 
 try:
-    app_client.call(set_app_state_val, v="Chris is the worst!")
+    app_client.call(set_app_state_val, v=1)
 except:
     print("Failed as expected since this state is static")
 

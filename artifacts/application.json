@@ -1,11 +1,11 @@
 {
     "hints": {
-        "set_app_state_val(string)void": {
+        "set_app_state_val(uint32)void": {
             "call_config": {
                 "no_op": "CALL"
             }
         },
-        "get_app_state_val()string": {
+        "get_app_state_val()uint32": {
             "read_only": true,
             "call_config": {
                 "no_op": "CALL"
@@ -13,13 +13,13 @@
         }
     },
     "source": {
-        "approval": "I3ByYWdtYSB2ZXJzaW9uIDgKaW50Y2Jsb2NrIDAgMQpieXRlY2Jsb2NrIDB4NmQ3OTVmNjQ2NTczNjM3MjY5NzA3NDY5NmY2ZQp0eG4gTnVtQXBwQXJncwppbnRjXzAgLy8gMAo9PQpibnogbWFpbl9sNgp0eG5hIEFwcGxpY2F0aW9uQXJncyAwCnB1c2hieXRlcyAweDI5ZDk0NzBmIC8vICJzZXRfYXBwX3N0YXRlX3ZhbChzdHJpbmcpdm9pZCIKPT0KYm56IG1haW5fbDUKdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMApwdXNoYnl0ZXMgMHhmNGMyMjU2NiAvLyAiZ2V0X2FwcF9zdGF0ZV92YWwoKXN0cmluZyIKPT0KYm56IG1haW5fbDQKZXJyCm1haW5fbDQ6CnR4biBPbkNvbXBsZXRpb24KaW50Y18wIC8vIE5vT3AKPT0KdHhuIEFwcGxpY2F0aW9uSUQKaW50Y18wIC8vIDAKIT0KJiYKYXNzZXJ0CmNhbGxzdWIgZ2V0YXBwc3RhdGV2YWxfMgpzdG9yZSAwCnB1c2hieXRlcyAweDE1MWY3Yzc1IC8vIDB4MTUxZjdjNzUKbG9hZCAwCmNvbmNhdApsb2cKaW50Y18xIC8vIDEKcmV0dXJuCm1haW5fbDU6CnR4biBPbkNvbXBsZXRpb24KaW50Y18wIC8vIE5vT3AKPT0KdHhuIEFwcGxpY2F0aW9uSUQKaW50Y18wIC8vIDAKIT0KJiYKYXNzZXJ0CnR4bmEgQXBwbGljYXRpb25BcmdzIDEKY2FsbHN1YiBzZXRhcHBzdGF0ZXZhbF8xCmludGNfMSAvLyAxCnJldHVybgptYWluX2w2Ogp0eG4gT25Db21wbGV0aW9uCmludGNfMCAvLyBOb09wCj09CmJueiBtYWluX2w4CmVycgptYWluX2w4Ogp0eG4gQXBwbGljYXRpb25JRAppbnRjXzAgLy8gMAo9PQphc3NlcnQKY2FsbHN1YiBjcmVhdGVfMAppbnRjXzEgLy8gMQpyZXR1cm4KCi8vIGNyZWF0ZQpjcmVhdGVfMDoKcHJvdG8gMCAwCmJ5dGVjXzAgLy8gIm15X2Rlc2NyaXB0aW9uIgpwdXNoYnl0ZXMgMHg0MzY4NzI2OTczMjA2OTczMjA3NDY4NjUyMDYyNjU3Mzc0MjEgLy8gIkNocmlzIGlzIHRoZSBiZXN0ISIKYXBwX2dsb2JhbF9wdXQKcmV0c3ViCgovLyBzZXRfYXBwX3N0YXRlX3ZhbApzZXRhcHBzdGF0ZXZhbF8xOgpwcm90byAxIDAKYnl0ZWNfMCAvLyAibXlfZGVzY3JpcHRpb24iCmZyYW1lX2RpZyAtMQpleHRyYWN0IDIgMAphcHBfZ2xvYmFsX3B1dApyZXRzdWIKCi8vIGdldF9hcHBfc3RhdGVfdmFsCmdldGFwcHN0YXRldmFsXzI6CnByb3RvIDAgMQpwdXNoYnl0ZXMgMHggLy8gIiIKYnl0ZWNfMCAvLyAibXlfZGVzY3JpcHRpb24iCmFwcF9nbG9iYWxfZ2V0CmZyYW1lX2J1cnkgMApmcmFtZV9kaWcgMApsZW4KaXRvYgpleHRyYWN0IDYgMApmcmFtZV9kaWcgMApjb25jYXQKZnJhbWVfYnVyeSAwCnJldHN1Yg==",
+        "approval": "I3ByYWdtYSB2ZXJzaW9uIDgKaW50Y2Jsb2NrIDAgMQpieXRlY2Jsb2NrIDB4NTQ2Zjc0NjE2YzU2NjE2MzYzNjk2ZTY1NzMKdHhuIE51bUFwcEFyZ3MKaW50Y18wIC8vIDAKPT0KYm56IG1haW5fbDYKdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMApwdXNoYnl0ZXMgMHgzZDI1Y2M5NSAvLyAic2V0X2FwcF9zdGF0ZV92YWwodWludDMyKXZvaWQiCj09CmJueiBtYWluX2w1CnR4bmEgQXBwbGljYXRpb25BcmdzIDAKcHVzaGJ5dGVzIDB4YzUyMzUxOGMgLy8gImdldF9hcHBfc3RhdGVfdmFsKCl1aW50MzIiCj09CmJueiBtYWluX2w0CmVycgptYWluX2w0Ogp0eG4gT25Db21wbGV0aW9uCmludGNfMCAvLyBOb09wCj09CnR4biBBcHBsaWNhdGlvbklECmludGNfMCAvLyAwCiE9CiYmCmFzc2VydApjYWxsc3ViIGdldGFwcHN0YXRldmFsXzIKc3RvcmUgMApwdXNoYnl0ZXMgMHgxNTFmN2M3NSAvLyAweDE1MWY3Yzc1CmxvYWQgMAppdG9iCmV4dHJhY3QgNCAwCmNvbmNhdApsb2cKaW50Y18xIC8vIDEKcmV0dXJuCm1haW5fbDU6CnR4biBPbkNvbXBsZXRpb24KaW50Y18wIC8vIE5vT3AKPT0KdHhuIEFwcGxpY2F0aW9uSUQKaW50Y18wIC8vIDAKIT0KJiYKYXNzZXJ0CnR4bmEgQXBwbGljYXRpb25BcmdzIDEKaW50Y18wIC8vIDAKZXh0cmFjdF91aW50MzIKY2FsbHN1YiBzZXRhcHBzdGF0ZXZhbF8xCmludGNfMSAvLyAxCnJldHVybgptYWluX2w2Ogp0eG4gT25Db21wbGV0aW9uCmludGNfMCAvLyBOb09wCj09CmJueiBtYWluX2w4CmVycgptYWluX2w4Ogp0eG4gQXBwbGljYXRpb25JRAppbnRjXzAgLy8gMAo9PQphc3NlcnQKY2FsbHN1YiBjcmVhdGVfMAppbnRjXzEgLy8gMQpyZXR1cm4KCi8vIGNyZWF0ZQpjcmVhdGVfMDoKcHJvdG8gMCAwCmJ5dGVjXzAgLy8gIlRvdGFsVmFjY2luZXMiCmludGNfMCAvLyAwCmFwcF9nbG9iYWxfcHV0CnJldHN1YgoKLy8gc2V0X2FwcF9zdGF0ZV92YWwKc2V0YXBwc3RhdGV2YWxfMToKcHJvdG8gMSAwCmJ5dGVjXzAgLy8gIlRvdGFsVmFjY2luZXMiCmZyYW1lX2RpZyAtMQphcHBfZ2xvYmFsX3B1dApyZXRzdWIKCi8vIGdldF9hcHBfc3RhdGVfdmFsCmdldGFwcHN0YXRldmFsXzI6CnByb3RvIDAgMQppbnRjXzAgLy8gMApieXRlY18wIC8vICJUb3RhbFZhY2NpbmVzIgphcHBfZ2xvYmFsX2dldApmcmFtZV9idXJ5IDAKZnJhbWVfZGlnIDAKcHVzaGludCA0Mjk0OTY3Mjk2IC8vIDQyOTQ5NjcyOTYKPAphc3NlcnQKcmV0c3Vi",
         "clear": "I3ByYWdtYSB2ZXJzaW9uIDgKcHVzaGludCAwIC8vIDAKcmV0dXJu"
     },
     "state": {
         "global": {
-            "num_byte_slices": 1,
-            "num_uints": 0
+            "num_byte_slices": 0,
+            "num_uints": 1
         },
         "local": {
             "num_byte_slices": 0,
@@ -29,9 +29,9 @@
     "schema": {
         "global": {
             "declared": {
-                "my_description": {
-                    "type": "bytes",
-                    "key": "my_description",
+                "TotalVaccines": {
+                    "type": "uint64",
+                    "key": "TotalVaccines",
                     "descr": ""
                 }
             },
@@ -49,7 +49,7 @@
                 "name": "set_app_state_val",
                 "args": [
                     {
-                        "type": "string",
+                        "type": "uint32",
                         "name": "v"
                     }
                 ],
@@ -61,7 +61,7 @@
                 "name": "get_app_state_val",
                 "args": [],
                 "returns": {
-                    "type": "string"
+                    "type": "uint32"
                 }
             }
         ],
