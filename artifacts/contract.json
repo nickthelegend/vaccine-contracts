@@ -101,14 +101,26 @@
             "args": [
                 {
                     "type": "string",
-                    "name": "item_name"
+                    "name": "store_id"
                 },
                 {
                     "type": "string",
                     "name": "vaccine_name"
                 },
                 {
-                    "type": "uint32",
+                    "type": "string",
+                    "name": "vaccineManufacturer"
+                },
+                {
+                    "type": "string",
+                    "name": "desc"
+                },
+                {
+                    "type": "uint64",
+                    "name": "vaccine_id"
+                },
+                {
+                    "type": "uint64",
                     "name": "quantity"
                 }
             ],

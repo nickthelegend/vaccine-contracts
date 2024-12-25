@@ -17,7 +17,6 @@ app_client = client.ApplicationClient(
 
 print(f"The Admin is {sender.address}")
 app_id, addr, txid = app_client.create()
-
 app_client.fund(1 * algo)
 
 print("App ID: ", app_id)
@@ -87,4 +86,4 @@ except:
 result = app_client.call(get_local_role)
 print(f"The Role of this account is : {result.return_value}")
 
-app_client.call(set_vaccine_quantity, item_name="sad",vaccine_name="covi",quantity=120,boxes=[(app_client.app_id, "sad")])   
+app_client.call(set_vaccine_quantity, store_id="sad",vaccine_name="Covaccine",vaccineManufacturer="sad",desc="sad",vaccine_id=123,quantity=120, boxes=[(app_client.app_id, "sad")])   

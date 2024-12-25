@@ -46,7 +46,7 @@ pushbytes 0x827c652d // "get_local_role()string"
 ==
 bnz main_l14
 txna ApplicationArgs 0
-pushbytes 0x2d064fc7 // "set_vaccine_quantity(string,string,uint32)void"
+pushbytes 0x29ffaa26 // "set_vaccine_quantity(string,string,string,string,uint64,uint64)void"
 ==
 bnz main_l13
 err
@@ -64,12 +64,21 @@ store 5
 txna ApplicationArgs 2
 store 6
 txna ApplicationArgs 3
-intc_0 // 0
-extract_uint32
 store 7
+txna ApplicationArgs 4
+store 8
+txna ApplicationArgs 5
+btoi
+store 9
+txna ApplicationArgs 6
+btoi
+store 10
 load 5
 load 6
 load 7
+load 8
+load 9
+load 10
 callsub setvaccinequantity_11
 intc_1 // 1
 return
@@ -384,33 +393,17 @@ retsub
 
 // set_vaccine_quantity
 setvaccinequantity_11:
-proto 3 0
+proto 6 0
 bytec_1 // ""
 intc_0 // 0
 dup
 bytec_1 // ""
 dup
-frame_dig -2
-frame_bury 4
-frame_dig 4
-frame_bury 3
-pushint 6 // 6
-frame_bury 1
-frame_dig 1
-itob
-extract 6 0
-frame_dig -1
-itob
-extract 4 0
-concat
-frame_dig 3
-concat
-frame_bury 0
-frame_dig -3
+frame_dig -6
 extract 2 0
 box_del
 pop
-frame_dig -3
+frame_dig -6
 extract 2 0
 frame_dig 0
 box_put
