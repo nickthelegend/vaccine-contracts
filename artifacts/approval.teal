@@ -1,6 +1,6 @@
 #pragma version 8
 intcblock 0 1
-bytecblock 0x41646d696e41646472657373 0x546f74616c56616363696e6573 0x151f7c75 0x
+bytecblock 0x41646d696e41646472657373 0x546f74616c56616363696e6573 0x151f7c75 0x 0x41707056657273696f6e
 txn NumAppArgs
 intc_0 // 0
 ==
@@ -106,6 +106,20 @@ create_0:
 proto 0 0
 bytec_0 // "AdminAddress"
 bytec_3 // ""
+app_global_put
+intc_0 // 0
+bytec 4 // "AppVersion"
+app_global_get_ex
+store 3
+store 2
+load 3
+!
+assert
+bytec 4 // "AppVersion"
+pushbytes 0x312e302e30 // "1.0.0"
+app_global_put
+pushbytes 0x546f74616c53746f726573 // "TotalStores"
+intc_1 // 1
 app_global_put
 bytec_1 // "TotalVaccines"
 intc_0 // 0

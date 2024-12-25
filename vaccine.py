@@ -18,6 +18,22 @@ class GlobalState:
         descr="A Address which is a global state value"
 
     )
+
+    AppVersion = GlobalStateValue(
+        stack_type=TealType.bytes,
+        default=Bytes("1.0.0"),
+        static=True,
+        descr="An global state value which stores the version of the contract running"
+
+    )
+
+    TotalStores = GlobalStateValue(
+        stack_type=TealType.uint64,
+        default=Int(1),
+        static=False,
+        descr="an integer value that stores the total number of stores that exist"
+
+    )
 app = Application("VaccineDistribution", state=GlobalState()).apply(
     unconditional_create_approval, initialize_global_state=True
 )
@@ -40,4 +56,6 @@ def set_admin(new_admin: abi.Address):
 @app.external(read_only=True)
 def get_admin(*, output: abi.Address) -> Expr:
     return output.set(app.state.AdminAddress.get())
+
+
 

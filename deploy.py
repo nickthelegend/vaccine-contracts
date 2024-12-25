@@ -1,5 +1,5 @@
 from beaker import client, sandbox
-from vaccine import app, get_app_state_val, set_app_state_val, set_admin
+from vaccine import app, get_app_state_val, set_app_state_val, set_admin, get_admin
 
 app.build().export("./artifacts")
 
@@ -25,11 +25,16 @@ except:
     print("Failed as expected since this state is static")
 
 
-# try:
-app_client.call(set_admin, new_admin=sender.address)
-# except:
-print("Failed as expected since this state is static")
+try:
+    app_client.call(set_admin, new_admin=sender.address)
+except:
+    print("Failed While setting the new_admin address")
 
 
 result = app_client.call(get_app_state_val)
 print("App State: ", result.return_value)
+
+
+result = app_client.call(get_admin)
+print("App State: ", result.return_value)
+
