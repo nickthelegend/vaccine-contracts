@@ -1,52 +1,79 @@
 #pragma version 8
 intcblock 0 1 4294967296
-bytecblock 0x151f7c75 0x526f6c65 0x546f74616c56616363696e6573 0x41646d696e41646472657373 0x 0x546f74616c53746f726573 0x476c6f62616c56616363696e65417661696c6162696c697479
+bytecblock 0x151f7c75 0x 0x526f6c65 0x546f74616c56616363696e6573 0x41646d696e41646472657373 0x546f74616c53746f726573 0x476c6f62616c56616363696e65417661696c6162696c697479
 txn NumAppArgs
 intc_0 // 0
 ==
-bnz main_l22
+bnz main_l24
 txna ApplicationArgs 0
 pushbytes 0x3d25cc95 // "set_app_state_val(uint32)void"
 ==
-bnz main_l21
+bnz main_l23
 txna ApplicationArgs 0
 pushbytes 0xc523518c // "get_app_state_val()uint32"
 ==
-bnz main_l20
+bnz main_l22
 txna ApplicationArgs 0
 pushbytes 0x44f2c1be // "set_admin(address)void"
 ==
-bnz main_l19
+bnz main_l21
 txna ApplicationArgs 0
 pushbytes 0x346b3dbc // "get_admin()address"
 ==
-bnz main_l18
+bnz main_l20
 txna ApplicationArgs 0
 pushbytes 0x1b4ed23a // "set_total_stores(uint32)void"
 ==
-bnz main_l17
+bnz main_l19
 txna ApplicationArgs 0
 pushbytes 0xb31a0cc9 // "get_total_stores()uint32"
 ==
-bnz main_l16
+bnz main_l18
 txna ApplicationArgs 0
 pushbytes 0x8106bd4d // "set_total_global_vaccine(uint32)void"
 ==
-bnz main_l15
+bnz main_l17
 txna ApplicationArgs 0
 pushbytes 0x18c0fadc // "get_total_global_vaccine()uint32"
 ==
-bnz main_l14
+bnz main_l16
 txna ApplicationArgs 0
 pushbytes 0xca82b669 // "set_local_role(string)void"
 ==
-bnz main_l13
+bnz main_l15
 txna ApplicationArgs 0
 pushbytes 0x827c652d // "get_local_role()string"
 ==
-bnz main_l12
+bnz main_l14
+txna ApplicationArgs 0
+pushbytes 0x2d064fc7 // "set_vaccine_quantity(string,string,uint32)void"
+==
+bnz main_l13
 err
-main_l12:
+main_l13:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+txna ApplicationArgs 1
+store 5
+txna ApplicationArgs 2
+store 6
+txna ApplicationArgs 3
+intc_0 // 0
+extract_uint32
+store 7
+load 5
+load 6
+load 7
+callsub setvaccinequantity_11
+intc_1 // 1
+return
+main_l14:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -63,7 +90,7 @@ concat
 log
 intc_1 // 1
 return
-main_l13:
+main_l15:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -76,7 +103,7 @@ txna ApplicationArgs 1
 callsub setlocalrole_9
 intc_1 // 1
 return
-main_l14:
+main_l16:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -95,7 +122,7 @@ concat
 log
 intc_1 // 1
 return
-main_l15:
+main_l17:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -110,7 +137,7 @@ extract_uint32
 callsub settotalglobalvaccine_7
 intc_1 // 1
 return
-main_l16:
+main_l18:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -129,7 +156,7 @@ concat
 log
 intc_1 // 1
 return
-main_l17:
+main_l19:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -144,7 +171,7 @@ extract_uint32
 callsub settotalstores_5
 intc_1 // 1
 return
-main_l18:
+main_l20:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -161,7 +188,7 @@ concat
 log
 intc_1 // 1
 return
-main_l19:
+main_l21:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -174,7 +201,7 @@ txna ApplicationArgs 1
 callsub setadmin_3
 intc_1 // 1
 return
-main_l20:
+main_l22:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -193,7 +220,7 @@ concat
 log
 intc_1 // 1
 return
-main_l21:
+main_l23:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -208,17 +235,17 @@ extract_uint32
 callsub setappstateval_1
 intc_1 // 1
 return
-main_l22:
+main_l24:
 txn OnCompletion
 intc_0 // NoOp
 ==
-bnz main_l26
+bnz main_l28
 txn OnCompletion
 intc_1 // OptIn
 ==
-bnz main_l25
+bnz main_l27
 err
-main_l25:
+main_l27:
 txn ApplicationID
 intc_0 // 0
 !=
@@ -226,7 +253,7 @@ assert
 callsub optin_0
 intc_1 // 1
 return
-main_l26:
+main_l28:
 txn ApplicationID
 intc_0 // 0
 ==
@@ -238,7 +265,7 @@ return
 optin_0:
 proto 0 0
 txn Sender
-bytec_1 // "Role"
+bytec_2 // "Role"
 pushbytes 0x55736572 // "User"
 app_local_put
 retsub
@@ -246,7 +273,7 @@ retsub
 // set_app_state_val
 setappstateval_1:
 proto 1 0
-bytec_2 // "TotalVaccines"
+bytec_3 // "TotalVaccines"
 frame_dig -1
 app_global_put
 retsub
@@ -255,7 +282,7 @@ retsub
 getappstateval_2:
 proto 0 1
 intc_0 // 0
-bytec_2 // "TotalVaccines"
+bytec_3 // "TotalVaccines"
 app_global_get
 frame_bury 0
 frame_dig 0
@@ -267,7 +294,7 @@ retsub
 // set_admin
 setadmin_3:
 proto 1 0
-bytec_3 // "AdminAddress"
+bytec 4 // "AdminAddress"
 frame_dig -1
 app_global_put
 retsub
@@ -275,8 +302,8 @@ retsub
 // get_admin
 getadmin_4:
 proto 0 1
-bytec 4 // ""
-bytec_3 // "AdminAddress"
+bytec_1 // ""
+bytec 4 // "AdminAddress"
 app_global_get
 frame_bury 0
 frame_dig 0
@@ -332,7 +359,7 @@ retsub
 setlocalrole_9:
 proto 1 0
 txn Sender
-bytec_1 // "Role"
+bytec_2 // "Role"
 frame_dig -1
 extract 2 0
 app_local_put
@@ -341,9 +368,9 @@ retsub
 // get_local_role
 getlocalrole_10:
 proto 0 1
-bytec 4 // ""
+bytec_1 // ""
 txn Sender
-bytec_1 // "Role"
+bytec_2 // "Role"
 app_local_get
 frame_bury 0
 frame_dig 0
@@ -353,4 +380,38 @@ extract 6 0
 frame_dig 0
 concat
 frame_bury 0
+retsub
+
+// set_vaccine_quantity
+setvaccinequantity_11:
+proto 3 0
+bytec_1 // ""
+intc_0 // 0
+dup
+bytec_1 // ""
+dup
+frame_dig -2
+frame_bury 4
+frame_dig 4
+frame_bury 3
+pushint 6 // 6
+frame_bury 1
+frame_dig 1
+itob
+extract 6 0
+frame_dig -1
+itob
+extract 4 0
+concat
+frame_dig 3
+concat
+frame_bury 0
+frame_dig -3
+extract 2 0
+box_del
+pop
+frame_dig -3
+extract 2 0
+frame_dig 0
+box_put
 retsub

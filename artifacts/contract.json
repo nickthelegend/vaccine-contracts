@@ -95,6 +95,26 @@
             "returns": {
                 "type": "string"
             }
+        },
+        {
+            "name": "set_vaccine_quantity",
+            "args": [
+                {
+                    "type": "string",
+                    "name": "item_name"
+                },
+                {
+                    "type": "string",
+                    "name": "vaccine_name"
+                },
+                {
+                    "type": "uint32",
+                    "name": "quantity"
+                }
+            ],
+            "returns": {
+                "type": "void"
+            }
         }
     ],
     "networks": {}

@@ -1,5 +1,6 @@
 from beaker import client, sandbox
-from vaccine import app, get_app_state_val, set_app_state_val, set_admin, get_admin, get_total_stores, set_total_stores, set_total_global_vaccine, get_total_global_vaccine, get_local_role, set_local_role
+from vaccine import app, get_app_state_val, set_app_state_val, set_admin, get_admin, get_total_stores, set_total_stores, set_total_global_vaccine, get_total_global_vaccine, get_local_role, set_local_role, set_vaccine_quantity
+from beaker.consts import algo
 
 app.build().export("./artifacts")
 
@@ -16,6 +17,8 @@ app_client = client.ApplicationClient(
 
 print(f"The Admin is {sender.address}")
 app_id, addr, txid = app_client.create()
+
+app_client.fund(1 * algo)
 
 print("App ID: ", app_id)
 
@@ -84,3 +87,4 @@ except:
 result = app_client.call(get_local_role)
 print(f"The Role of this account is : {result.return_value}")
 
+app_client.call(set_vaccine_quantity, item_name="sad",vaccine_name="covi",quantity=120,boxes=[(app_client.app_id, "sad")])   
