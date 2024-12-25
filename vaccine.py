@@ -4,6 +4,7 @@ from beaker.lib.storage import BoxMapping
 
 class VaccineItem(abi.NamedTuple):
     name : abi.Field[abi.String]
+    quantity : abi.Field[abi.Uint64]
     manufacturer: abi.Field[abi.String]
     desc: abi.Field[abi.String]
 
@@ -128,7 +129,7 @@ def set_vaccine_quantity(store_id: abi.String,vaccine_name: abi.String,vaccineMa
     
 
     return Seq(
-        vaccineTuple.set(vaccine_name,vaccineManufacturer,desc),
+        vaccineTuple.set(vaccine_name,quantity,vaccineManufacturer,desc),
     app.state.inventory[store_id.get()].set(vaccineTuple)
         
     )

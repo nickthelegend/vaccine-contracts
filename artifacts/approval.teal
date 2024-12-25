@@ -50,7 +50,7 @@ pushbytes 0x29ffaa26 // "set_vaccine_quantity(string,string,string,string,uint64
 ==
 bnz main_l15
 txna ApplicationArgs 0
-pushbytes 0x5a24d060 // "readItem(string)(string,string,string)"
+pushbytes 0x387109b4 // "readItem(string)(string,uint64,string,string)"
 ==
 bnz main_l14
 err
@@ -425,7 +425,7 @@ frame_dig -5
 frame_bury 4
 frame_dig 4
 frame_bury 3
-pushint 6 // 6
+pushint 14 // 14
 frame_bury 1
 frame_dig 1
 frame_dig 4
@@ -439,6 +439,9 @@ assert
 frame_dig 1
 itob
 extract 6 0
+frame_dig -1
+itob
+concat
 frame_dig -4
 frame_bury 4
 frame_dig 3
