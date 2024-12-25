@@ -58,4 +58,12 @@ def get_admin(*, output: abi.Address) -> Expr:
     return output.set(app.state.AdminAddress.get())
 
 
+@app.external
+def set_total_stores(v: abi.Uint32) -> Expr:
+    return app.state.TotalStores.set(v.get())
+
+
+@app.external(read_only=True)
+def get_total_stores(*, output: abi.Uint32) -> Expr:
+    return output.set(app.state.TotalStores)
 

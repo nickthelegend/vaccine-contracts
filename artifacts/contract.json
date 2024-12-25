@@ -38,6 +38,25 @@
             "returns": {
                 "type": "address"
             }
+        },
+        {
+            "name": "set_total_stores",
+            "args": [
+                {
+                    "type": "uint32",
+                    "name": "v"
+                }
+            ],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "get_total_stores",
+            "args": [],
+            "returns": {
+                "type": "uint32"
+            }
         }
     ],
     "networks": {}

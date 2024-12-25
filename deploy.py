@@ -1,5 +1,5 @@
 from beaker import client, sandbox
-from vaccine import app, get_app_state_val, set_app_state_val, set_admin, get_admin
+from vaccine import app, get_app_state_val, set_app_state_val, set_admin, get_admin, get_total_stores, set_total_stores
 
 app.build().export("./artifacts")
 
@@ -38,3 +38,15 @@ print("App State: ", result.return_value)
 result = app_client.call(get_admin)
 print("App State: ", result.return_value)
 
+
+
+try: 
+    app_client.call(set_total_stores, v=20)
+
+except:
+    print("Failed to set the total number of stores")
+
+
+
+result = app_client.call(get_total_stores)
+print(f"Total Number of stores are : {result.return_value}")
