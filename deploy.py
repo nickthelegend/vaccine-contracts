@@ -1,5 +1,5 @@
 from beaker import client, sandbox
-from vaccine import app, get_app_state_val, set_app_state_val, set_admin, get_admin, get_total_stores, set_total_stores, set_total_global_vaccine, get_total_global_vaccine
+from vaccine import app, get_app_state_val, set_app_state_val, set_admin, get_admin, get_total_stores, set_total_stores, set_total_global_vaccine, get_total_global_vaccine, get_local_role, set_local_role
 
 app.build().export("./artifacts")
 
@@ -61,4 +61,26 @@ except:
 
 result = app_client.call(get_total_global_vaccine)
 print(f"Total Number of global available vaccine are : {result.return_value}")
+
+
+
+
+
+
+
+# we have to opt in for setting the local state values
+
+
+app_client.opt_in()
+
+try: 
+    app_client.call(set_local_role, v="Admin")
+
+except:
+    print("Failed to set the Role")
+
+
+
+result = app_client.call(get_local_role)
+print(f"The Role of this account is : {result.return_value}")
 

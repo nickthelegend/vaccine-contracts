@@ -76,6 +76,25 @@
             "returns": {
                 "type": "uint32"
             }
+        },
+        {
+            "name": "set_local_role",
+            "args": [
+                {
+                    "type": "string",
+                    "name": "v"
+                }
+            ],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "get_local_role",
+            "args": [],
+            "returns": {
+                "type": "string"
+            }
         }
     ],
     "networks": {}

@@ -1,5 +1,5 @@
-from beaker import Application, GlobalStateValue, unconditional_create_approval
-from pyteal import Bytes, Expr, Int, TealType, abi
+from beaker import Application, GlobalStateValue, unconditional_create_approval , LocalStateValue, unconditional_opt_in_approval
+from pyteal import Bytes, Expr, Int, TealType, abi,Txn
 
 
 class GlobalState:
@@ -42,8 +42,22 @@ class GlobalState:
         descr="an integer value that stores the total number of stores that exist"
 
     )
-app = Application("VaccineDistribution", state=GlobalState()).apply(
-    unconditional_create_approval, initialize_global_state=True
+
+
+    
+
+class LocalState:
+    Role = LocalStateValue(
+        stack_type=TealType.bytes,
+        default=Bytes("User"),
+        descr="User's role"
+    )
+
+class CombinedState(GlobalState, LocalState):
+    pass
+
+app = Application("VaccineDistribution", state=CombinedState()).apply(
+    unconditional_opt_in_approval, initialize_local_state=True
 )
 
 
@@ -86,3 +100,10 @@ def set_total_global_vaccine(v: abi.Uint32) -> Expr:
 def get_total_global_vaccine(*, output: abi.Uint32) -> Expr:
     return output.set(app.state.GlobalVaccineAvailability)
 
+@app.external
+def set_local_role(v:abi.String) -> Expr:
+    return app.state.Role[Txn.sender()].set(v.get())
+
+@app.external(read_only=True)
+def get_local_role(*, output: abi.String) -> Expr:
+    return output.set(app.state.Role[Txn.sender()])
