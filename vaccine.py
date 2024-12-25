@@ -1,5 +1,5 @@
 from beaker import Application, GlobalStateValue, unconditional_create_approval , LocalStateValue, unconditional_opt_in_approval
-from pyteal import Bytes, Expr, Int, TealType, abi,Txn, Concat
+from pyteal import Bytes, Expr, Int, Seq, TealType, abi,Txn, Concat
 from beaker.lib.storage import BoxMapping
 
 class VaccineItem(abi.NamedTuple):
@@ -66,7 +66,7 @@ class LocalState:
 
 
 class CombinedState(GlobalState, LocalState):
-    inventory = BoxMapping(abi.Uint64, VaccineItem)
+    inventory = BoxMapping(abi.String, VaccineItem)
 
     pass
 
@@ -125,7 +125,16 @@ def get_local_role(*, output: abi.String) -> Expr:
 @app.external
 def set_vaccine_quantity(store_id: abi.String,vaccine_name: abi.String,vaccineManufacturer: abi.String, desc: abi.String,vaccine_id: abi.Uint64, quantity: abi.Uint64) -> Expr:
     vaccineTuple = VaccineItem()
-    vaccineTuple.set(vaccine_name,vaccineManufacturer,desc)
-    return app.state.inventory[store_id.get()].set(vaccineTuple)
+    
+
+    return Seq(
+        vaccineTuple.set(vaccine_name,vaccineManufacturer,desc),
+    app.state.inventory[store_id.get()].set(vaccineTuple)
+        
+    )
 
 
+
+@app.external
+def readItem(store_id: abi.String, *, output: VaccineItem) -> Expr:
+    return app.state.inventory[store_id.get()].store_into(output)

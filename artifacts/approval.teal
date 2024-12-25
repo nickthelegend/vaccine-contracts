@@ -1,56 +1,78 @@
 #pragma version 8
-intcblock 0 1 4294967296
+intcblock 0 1 4294967296 65536
 bytecblock 0x151f7c75 0x 0x526f6c65 0x546f74616c56616363696e6573 0x41646d696e41646472657373 0x546f74616c53746f726573 0x476c6f62616c56616363696e65417661696c6162696c697479
 txn NumAppArgs
 intc_0 // 0
 ==
-bnz main_l24
+bnz main_l26
 txna ApplicationArgs 0
 pushbytes 0x3d25cc95 // "set_app_state_val(uint32)void"
 ==
-bnz main_l23
+bnz main_l25
 txna ApplicationArgs 0
 pushbytes 0xc523518c // "get_app_state_val()uint32"
 ==
-bnz main_l22
+bnz main_l24
 txna ApplicationArgs 0
 pushbytes 0x44f2c1be // "set_admin(address)void"
 ==
-bnz main_l21
+bnz main_l23
 txna ApplicationArgs 0
 pushbytes 0x346b3dbc // "get_admin()address"
 ==
-bnz main_l20
+bnz main_l22
 txna ApplicationArgs 0
 pushbytes 0x1b4ed23a // "set_total_stores(uint32)void"
 ==
-bnz main_l19
+bnz main_l21
 txna ApplicationArgs 0
 pushbytes 0xb31a0cc9 // "get_total_stores()uint32"
 ==
-bnz main_l18
+bnz main_l20
 txna ApplicationArgs 0
 pushbytes 0x8106bd4d // "set_total_global_vaccine(uint32)void"
 ==
-bnz main_l17
+bnz main_l19
 txna ApplicationArgs 0
 pushbytes 0x18c0fadc // "get_total_global_vaccine()uint32"
 ==
-bnz main_l16
+bnz main_l18
 txna ApplicationArgs 0
 pushbytes 0xca82b669 // "set_local_role(string)void"
 ==
-bnz main_l15
+bnz main_l17
 txna ApplicationArgs 0
 pushbytes 0x827c652d // "get_local_role()string"
 ==
-bnz main_l14
+bnz main_l16
 txna ApplicationArgs 0
 pushbytes 0x29ffaa26 // "set_vaccine_quantity(string,string,string,string,uint64,uint64)void"
 ==
-bnz main_l13
+bnz main_l15
+txna ApplicationArgs 0
+pushbytes 0x5a24d060 // "readItem(string)(string,string,string)"
+==
+bnz main_l14
 err
-main_l13:
+main_l14:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+txna ApplicationArgs 1
+callsub readItem_12
+store 11
+bytec_0 // 0x151f7c75
+load 11
+concat
+log
+intc_1 // 1
+return
+main_l15:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -82,7 +104,7 @@ load 10
 callsub setvaccinequantity_11
 intc_1 // 1
 return
-main_l14:
+main_l16:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -99,7 +121,7 @@ concat
 log
 intc_1 // 1
 return
-main_l15:
+main_l17:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -112,7 +134,7 @@ txna ApplicationArgs 1
 callsub setlocalrole_9
 intc_1 // 1
 return
-main_l16:
+main_l18:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -131,7 +153,7 @@ concat
 log
 intc_1 // 1
 return
-main_l17:
+main_l19:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -146,7 +168,7 @@ extract_uint32
 callsub settotalglobalvaccine_7
 intc_1 // 1
 return
-main_l18:
+main_l20:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -165,7 +187,7 @@ concat
 log
 intc_1 // 1
 return
-main_l19:
+main_l21:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -180,7 +202,7 @@ extract_uint32
 callsub settotalstores_5
 intc_1 // 1
 return
-main_l20:
+main_l22:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -197,7 +219,7 @@ concat
 log
 intc_1 // 1
 return
-main_l21:
+main_l23:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -210,7 +232,7 @@ txna ApplicationArgs 1
 callsub setadmin_3
 intc_1 // 1
 return
-main_l22:
+main_l24:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -229,7 +251,7 @@ concat
 log
 intc_1 // 1
 return
-main_l23:
+main_l25:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -244,17 +266,17 @@ extract_uint32
 callsub setappstateval_1
 intc_1 // 1
 return
-main_l24:
+main_l26:
 txn OnCompletion
 intc_0 // NoOp
 ==
-bnz main_l28
+bnz main_l30
 txn OnCompletion
 intc_1 // OptIn
 ==
-bnz main_l27
+bnz main_l29
 err
-main_l27:
+main_l29:
 txn ApplicationID
 intc_0 // 0
 !=
@@ -262,7 +284,7 @@ assert
 callsub optin_0
 intc_1 // 1
 return
-main_l28:
+main_l30:
 txn ApplicationID
 intc_0 // 0
 ==
@@ -399,6 +421,60 @@ intc_0 // 0
 dup
 bytec_1 // ""
 dup
+frame_dig -5
+frame_bury 4
+frame_dig 4
+frame_bury 3
+pushint 6 // 6
+frame_bury 1
+frame_dig 1
+frame_dig 4
+len
++
+frame_bury 2
+frame_dig 2
+intc_3 // 65536
+<
+assert
+frame_dig 1
+itob
+extract 6 0
+frame_dig -4
+frame_bury 4
+frame_dig 3
+frame_dig 4
+concat
+frame_bury 3
+frame_dig 2
+frame_bury 1
+frame_dig 1
+frame_dig 4
+len
++
+frame_bury 2
+frame_dig 2
+intc_3 // 65536
+<
+assert
+frame_dig 1
+itob
+extract 6 0
+concat
+frame_dig -3
+frame_bury 4
+frame_dig 3
+frame_dig 4
+concat
+frame_bury 3
+frame_dig 2
+frame_bury 1
+frame_dig 1
+itob
+extract 6 0
+concat
+frame_dig 3
+concat
+frame_bury 0
 frame_dig -6
 extract 2 0
 box_del
@@ -407,4 +483,19 @@ frame_dig -6
 extract 2 0
 frame_dig 0
 box_put
+retsub
+
+// readItem
+readItem_12:
+proto 1 1
+bytec_1 // ""
+frame_dig -1
+extract 2 0
+box_get
+store 13
+store 12
+load 13
+assert
+load 12
+frame_bury 0
 retsub

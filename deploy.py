@@ -1,6 +1,7 @@
 from beaker import client, sandbox
-from vaccine import app, get_app_state_val, set_app_state_val, set_admin, get_admin, get_total_stores, set_total_stores, set_total_global_vaccine, get_total_global_vaccine, get_local_role, set_local_role, set_vaccine_quantity
+from vaccine import app, get_app_state_val, set_app_state_val, set_admin, get_admin, get_total_stores, set_total_stores, set_total_global_vaccine, get_total_global_vaccine, get_local_role, set_local_role, set_vaccine_quantity,readItem
 from beaker.consts import algo
+from algokit_utils.logic_error import LogicError
 
 app.build().export("./artifacts")
 
@@ -17,7 +18,7 @@ app_client = client.ApplicationClient(
 
 print(f"The Admin is {sender.address}")
 app_id, addr, txid = app_client.create()
-app_client.fund(1 * algo)
+app_client.fund(10 * algo)
 
 print("App ID: ", app_id)
 
@@ -87,3 +88,12 @@ result = app_client.call(get_local_role)
 print(f"The Role of this account is : {result.return_value}")
 
 app_client.call(set_vaccine_quantity, store_id="sad",vaccine_name="Covaccine",vaccineManufacturer="sad",desc="sad",vaccine_id=123,quantity=120, boxes=[(app_client.app_id, "sad")])   
+
+try:
+    value = app_client.call(
+        readItem, store_id="sad", boxes=[(app_client.app_id, "sad")]
+    )
+    print(value.return_value)
+except LogicError as e:
+    print("Apple box no longer exists")
+

@@ -127,6 +127,18 @@
             "returns": {
                 "type": "void"
             }
+        },
+        {
+            "name": "readItem",
+            "args": [
+                {
+                    "type": "string",
+                    "name": "store_id"
+                }
+            ],
+            "returns": {
+                "type": "(string,string,string)"
+            }
         }
     ],
     "networks": {}
