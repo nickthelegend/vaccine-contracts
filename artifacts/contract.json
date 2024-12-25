@@ -19,6 +19,25 @@
             "returns": {
                 "type": "uint32"
             }
+        },
+        {
+            "name": "set_admin",
+            "args": [
+                {
+                    "type": "address",
+                    "name": "new_admin"
+                }
+            ],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "get_admin",
+            "args": [],
+            "returns": {
+                "type": "address"
+            }
         }
     ],
     "networks": {}

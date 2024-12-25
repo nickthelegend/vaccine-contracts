@@ -10,15 +10,26 @@
             "call_config": {
                 "no_op": "CALL"
             }
+        },
+        "set_admin(address)void": {
+            "call_config": {
+                "no_op": "CALL"
+            }
+        },
+        "get_admin()address": {
+            "read_only": true,
+            "call_config": {
+                "no_op": "CALL"
+            }
         }
     },
     "source": {
-        "approval": "I3ByYWdtYSB2ZXJzaW9uIDgKaW50Y2Jsb2NrIDAgMQpieXRlY2Jsb2NrIDB4NTQ2Zjc0NjE2YzU2NjE2MzYzNjk2ZTY1NzMKdHhuIE51bUFwcEFyZ3MKaW50Y18wIC8vIDAKPT0KYm56IG1haW5fbDYKdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMApwdXNoYnl0ZXMgMHgzZDI1Y2M5NSAvLyAic2V0X2FwcF9zdGF0ZV92YWwodWludDMyKXZvaWQiCj09CmJueiBtYWluX2w1CnR4bmEgQXBwbGljYXRpb25BcmdzIDAKcHVzaGJ5dGVzIDB4YzUyMzUxOGMgLy8gImdldF9hcHBfc3RhdGVfdmFsKCl1aW50MzIiCj09CmJueiBtYWluX2w0CmVycgptYWluX2w0Ogp0eG4gT25Db21wbGV0aW9uCmludGNfMCAvLyBOb09wCj09CnR4biBBcHBsaWNhdGlvbklECmludGNfMCAvLyAwCiE9CiYmCmFzc2VydApjYWxsc3ViIGdldGFwcHN0YXRldmFsXzIKc3RvcmUgMApwdXNoYnl0ZXMgMHgxNTFmN2M3NSAvLyAweDE1MWY3Yzc1CmxvYWQgMAppdG9iCmV4dHJhY3QgNCAwCmNvbmNhdApsb2cKaW50Y18xIC8vIDEKcmV0dXJuCm1haW5fbDU6CnR4biBPbkNvbXBsZXRpb24KaW50Y18wIC8vIE5vT3AKPT0KdHhuIEFwcGxpY2F0aW9uSUQKaW50Y18wIC8vIDAKIT0KJiYKYXNzZXJ0CnR4bmEgQXBwbGljYXRpb25BcmdzIDEKaW50Y18wIC8vIDAKZXh0cmFjdF91aW50MzIKY2FsbHN1YiBzZXRhcHBzdGF0ZXZhbF8xCmludGNfMSAvLyAxCnJldHVybgptYWluX2w2Ogp0eG4gT25Db21wbGV0aW9uCmludGNfMCAvLyBOb09wCj09CmJueiBtYWluX2w4CmVycgptYWluX2w4Ogp0eG4gQXBwbGljYXRpb25JRAppbnRjXzAgLy8gMAo9PQphc3NlcnQKY2FsbHN1YiBjcmVhdGVfMAppbnRjXzEgLy8gMQpyZXR1cm4KCi8vIGNyZWF0ZQpjcmVhdGVfMDoKcHJvdG8gMCAwCmJ5dGVjXzAgLy8gIlRvdGFsVmFjY2luZXMiCmludGNfMCAvLyAwCmFwcF9nbG9iYWxfcHV0CnJldHN1YgoKLy8gc2V0X2FwcF9zdGF0ZV92YWwKc2V0YXBwc3RhdGV2YWxfMToKcHJvdG8gMSAwCmJ5dGVjXzAgLy8gIlRvdGFsVmFjY2luZXMiCmZyYW1lX2RpZyAtMQphcHBfZ2xvYmFsX3B1dApyZXRzdWIKCi8vIGdldF9hcHBfc3RhdGVfdmFsCmdldGFwcHN0YXRldmFsXzI6CnByb3RvIDAgMQppbnRjXzAgLy8gMApieXRlY18wIC8vICJUb3RhbFZhY2NpbmVzIgphcHBfZ2xvYmFsX2dldApmcmFtZV9idXJ5IDAKZnJhbWVfZGlnIDAKcHVzaGludCA0Mjk0OTY3Mjk2IC8vIDQyOTQ5NjcyOTYKPAphc3NlcnQKcmV0c3Vi",
+        "approval": "I3ByYWdtYSB2ZXJzaW9uIDgKaW50Y2Jsb2NrIDAgMQpieXRlY2Jsb2NrIDB4NDE2NDZkNjk2ZTQxNjQ2NDcyNjU3MzczIDB4NTQ2Zjc0NjE2YzU2NjE2MzYzNjk2ZTY1NzMgMHgxNTFmN2M3NSAweAp0eG4gTnVtQXBwQXJncwppbnRjXzAgLy8gMAo9PQpibnogbWFpbl9sMTAKdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMApwdXNoYnl0ZXMgMHgzZDI1Y2M5NSAvLyAic2V0X2FwcF9zdGF0ZV92YWwodWludDMyKXZvaWQiCj09CmJueiBtYWluX2w5CnR4bmEgQXBwbGljYXRpb25BcmdzIDAKcHVzaGJ5dGVzIDB4YzUyMzUxOGMgLy8gImdldF9hcHBfc3RhdGVfdmFsKCl1aW50MzIiCj09CmJueiBtYWluX2w4CnR4bmEgQXBwbGljYXRpb25BcmdzIDAKcHVzaGJ5dGVzIDB4NDRmMmMxYmUgLy8gInNldF9hZG1pbihhZGRyZXNzKXZvaWQiCj09CmJueiBtYWluX2w3CnR4bmEgQXBwbGljYXRpb25BcmdzIDAKcHVzaGJ5dGVzIDB4MzQ2YjNkYmMgLy8gImdldF9hZG1pbigpYWRkcmVzcyIKPT0KYm56IG1haW5fbDYKZXJyCm1haW5fbDY6CnR4biBPbkNvbXBsZXRpb24KaW50Y18wIC8vIE5vT3AKPT0KdHhuIEFwcGxpY2F0aW9uSUQKaW50Y18wIC8vIDAKIT0KJiYKYXNzZXJ0CmNhbGxzdWIgZ2V0YWRtaW5fNApzdG9yZSAxCmJ5dGVjXzIgLy8gMHgxNTFmN2M3NQpsb2FkIDEKY29uY2F0CmxvZwppbnRjXzEgLy8gMQpyZXR1cm4KbWFpbl9sNzoKdHhuIE9uQ29tcGxldGlvbgppbnRjXzAgLy8gTm9PcAo9PQp0eG4gQXBwbGljYXRpb25JRAppbnRjXzAgLy8gMAohPQomJgphc3NlcnQKdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMQpjYWxsc3ViIHNldGFkbWluXzMKaW50Y18xIC8vIDEKcmV0dXJuCm1haW5fbDg6CnR4biBPbkNvbXBsZXRpb24KaW50Y18wIC8vIE5vT3AKPT0KdHhuIEFwcGxpY2F0aW9uSUQKaW50Y18wIC8vIDAKIT0KJiYKYXNzZXJ0CmNhbGxzdWIgZ2V0YXBwc3RhdGV2YWxfMgpzdG9yZSAwCmJ5dGVjXzIgLy8gMHgxNTFmN2M3NQpsb2FkIDAKaXRvYgpleHRyYWN0IDQgMApjb25jYXQKbG9nCmludGNfMSAvLyAxCnJldHVybgptYWluX2w5Ogp0eG4gT25Db21wbGV0aW9uCmludGNfMCAvLyBOb09wCj09CnR4biBBcHBsaWNhdGlvbklECmludGNfMCAvLyAwCiE9CiYmCmFzc2VydAp0eG5hIEFwcGxpY2F0aW9uQXJncyAxCmludGNfMCAvLyAwCmV4dHJhY3RfdWludDMyCmNhbGxzdWIgc2V0YXBwc3RhdGV2YWxfMQppbnRjXzEgLy8gMQpyZXR1cm4KbWFpbl9sMTA6CnR4biBPbkNvbXBsZXRpb24KaW50Y18wIC8vIE5vT3AKPT0KYm56IG1haW5fbDEyCmVycgptYWluX2wxMjoKdHhuIEFwcGxpY2F0aW9uSUQKaW50Y18wIC8vIDAKPT0KYXNzZXJ0CmNhbGxzdWIgY3JlYXRlXzAKaW50Y18xIC8vIDEKcmV0dXJuCgovLyBjcmVhdGUKY3JlYXRlXzA6CnByb3RvIDAgMApieXRlY18wIC8vICJBZG1pbkFkZHJlc3MiCmJ5dGVjXzMgLy8gIiIKYXBwX2dsb2JhbF9wdXQKYnl0ZWNfMSAvLyAiVG90YWxWYWNjaW5lcyIKaW50Y18wIC8vIDAKYXBwX2dsb2JhbF9wdXQKcmV0c3ViCgovLyBzZXRfYXBwX3N0YXRlX3ZhbApzZXRhcHBzdGF0ZXZhbF8xOgpwcm90byAxIDAKYnl0ZWNfMSAvLyAiVG90YWxWYWNjaW5lcyIKZnJhbWVfZGlnIC0xCmFwcF9nbG9iYWxfcHV0CnJldHN1YgoKLy8gZ2V0X2FwcF9zdGF0ZV92YWwKZ2V0YXBwc3RhdGV2YWxfMjoKcHJvdG8gMCAxCmludGNfMCAvLyAwCmJ5dGVjXzEgLy8gIlRvdGFsVmFjY2luZXMiCmFwcF9nbG9iYWxfZ2V0CmZyYW1lX2J1cnkgMApmcmFtZV9kaWcgMApwdXNoaW50IDQyOTQ5NjcyOTYgLy8gNDI5NDk2NzI5Ngo8CmFzc2VydApyZXRzdWIKCi8vIHNldF9hZG1pbgpzZXRhZG1pbl8zOgpwcm90byAxIDAKYnl0ZWNfMCAvLyAiQWRtaW5BZGRyZXNzIgpmcmFtZV9kaWcgLTEKYXBwX2dsb2JhbF9wdXQKcmV0c3ViCgovLyBnZXRfYWRtaW4KZ2V0YWRtaW5fNDoKcHJvdG8gMCAxCmJ5dGVjXzMgLy8gIiIKYnl0ZWNfMCAvLyAiQWRtaW5BZGRyZXNzIgphcHBfZ2xvYmFsX2dldApmcmFtZV9idXJ5IDAKZnJhbWVfZGlnIDAKbGVuCnB1c2hpbnQgMzIgLy8gMzIKPT0KYXNzZXJ0CnJldHN1Yg==",
         "clear": "I3ByYWdtYSB2ZXJzaW9uIDgKcHVzaGludCAwIC8vIDAKcmV0dXJu"
     },
     "state": {
         "global": {
-            "num_byte_slices": 0,
+            "num_byte_slices": 1,
             "num_uints": 1
         },
         "local": {
@@ -29,10 +40,15 @@
     "schema": {
         "global": {
             "declared": {
+                "AdminAddress": {
+                    "type": "bytes",
+                    "key": "AdminAddress",
+                    "descr": "A Address which is a global state value"
+                },
                 "TotalVaccines": {
                     "type": "uint64",
                     "key": "TotalVaccines",
-                    "descr": ""
+                    "descr": "An integer global state value"
                 }
             },
             "reserved": {}
@@ -62,6 +78,25 @@
                 "args": [],
                 "returns": {
                     "type": "uint32"
+                }
+            },
+            {
+                "name": "set_admin",
+                "args": [
+                    {
+                        "type": "address",
+                        "name": "new_admin"
+                    }
+                ],
+                "returns": {
+                    "type": "void"
+                }
+            },
+            {
+                "name": "get_admin",
+                "args": [],
+                "returns": {
+                    "type": "address"
                 }
             }
         ],
