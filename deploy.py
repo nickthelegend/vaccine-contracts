@@ -1,5 +1,5 @@
 from beaker import client, sandbox
-from vaccine import app, get_app_state_val, set_app_state_val, set_admin, get_admin, get_total_stores, set_total_stores
+from vaccine import app, get_app_state_val, set_app_state_val, set_admin, get_admin, get_total_stores, set_total_stores, set_total_global_vaccine, get_total_global_vaccine
 
 app.build().export("./artifacts")
 
@@ -50,3 +50,15 @@ except:
 
 result = app_client.call(get_total_stores)
 print(f"Total Number of stores are : {result.return_value}")
+
+try: 
+    app_client.call(set_total_global_vaccine, v=20)
+
+except:
+    print("Failed to set the total number of stores")
+
+
+
+result = app_client.call(get_total_global_vaccine)
+print(f"Total Number of global available vaccine are : {result.return_value}")
+

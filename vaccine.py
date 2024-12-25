@@ -34,6 +34,14 @@ class GlobalState:
         descr="an integer value that stores the total number of stores that exist"
 
     )
+
+    GlobalVaccineAvailability = GlobalStateValue(
+        stack_type=TealType.uint64,
+        default=Int(1),
+        static=False,
+        descr="an integer value that stores the total number of stores that exist"
+
+    )
 app = Application("VaccineDistribution", state=GlobalState()).apply(
     unconditional_create_approval, initialize_global_state=True
 )
@@ -66,4 +74,15 @@ def set_total_stores(v: abi.Uint32) -> Expr:
 @app.external(read_only=True)
 def get_total_stores(*, output: abi.Uint32) -> Expr:
     return output.set(app.state.TotalStores)
+
+
+
+@app.external
+def set_total_global_vaccine(v: abi.Uint32) -> Expr:
+    return app.state.GlobalVaccineAvailability.set(v.get())
+
+
+@app.external(read_only=True)
+def get_total_global_vaccine(*, output: abi.Uint32) -> Expr:
+    return output.set(app.state.GlobalVaccineAvailability)
 

@@ -57,6 +57,25 @@
             "returns": {
                 "type": "uint32"
             }
+        },
+        {
+            "name": "set_total_global_vaccine",
+            "args": [
+                {
+                    "type": "uint32",
+                    "name": "v"
+                }
+            ],
+            "returns": {
+                "type": "void"
+            }
+        },
+        {
+            "name": "get_total_global_vaccine",
+            "args": [],
+            "returns": {
+                "type": "uint32"
+            }
         }
     ],
     "networks": {}
