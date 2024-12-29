@@ -105,19 +105,7 @@
                 },
                 {
                     "type": "string",
-                    "name": "vaccine_name"
-                },
-                {
-                    "type": "string",
-                    "name": "vaccineManufacturer"
-                },
-                {
-                    "type": "string",
-                    "name": "desc"
-                },
-                {
-                    "type": "uint64",
-                    "name": "vaccine_id"
+                    "name": "vaccine_data"
                 },
                 {
                     "type": "uint64",
@@ -137,7 +125,7 @@
                 }
             ],
             "returns": {
-                "type": "(string,uint64,string,string)"
+                "type": "string"
             }
         }
     ],

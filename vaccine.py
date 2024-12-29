@@ -2,17 +2,17 @@ from beaker import Application, GlobalStateValue, unconditional_create_approval 
 from pyteal import Bytes, Expr, Int, Seq, TealType, abi,Txn, Concat
 from beaker.lib.storage import BoxMapping
 
-class VaccineItem(abi.NamedTuple):
-    name : abi.Field[abi.String]
-    quantity : abi.Field[abi.Uint64]
-    manufacturer: abi.Field[abi.String]
-    desc: abi.Field[abi.String]
+# class VaccineItem(abi.NamedTuple):
+#     name : abi.Field[abi.String]
+#     quantity : abi.Field[abi.Uint64]
+#     manufacturer: abi.Field[abi.String]
+#     desc: abi.Field[abi.String]
 
 
 # class StoreInventory:
 #     inventory = BoxMapping(abi.Uint64, VaccineItem)
 
-
+import json
 
 class GlobalState:
     TotalVaccines = GlobalStateValue(
@@ -67,7 +67,7 @@ class LocalState:
 
 
 class CombinedState(GlobalState, LocalState):
-    inventory = BoxMapping(abi.String, VaccineItem)
+    inventory = BoxMapping(abi.String, abi.String)
 
     pass
 
@@ -123,19 +123,34 @@ def set_local_role(v:abi.String) -> Expr:
 def get_local_role(*, output: abi.String) -> Expr:
     return output.set(app.state.Role[Txn.sender()])
     
-@app.external
-def set_vaccine_quantity(store_id: abi.String,vaccine_name: abi.String,vaccineManufacturer: abi.String, desc: abi.String,vaccine_id: abi.Uint64, quantity: abi.Uint64) -> Expr:
-    vaccineTuple = VaccineItem()
+# @app.external
+# def set_vaccine_quantity(store_id: abi.String,vaccine_name: abi.String,vaccineManufacturer: abi.String, desc: abi.String,vaccine_id: abi.Uint64, quantity: abi.Uint64) -> Expr:
+#     vaccineTuple = VaccineItem()
     
 
+#     return Seq(
+#         vaccineTuple.set(vaccine_name,quantity,vaccineManufacturer,desc),
+#     app.state.inventory[store_id.get()].set(vaccineTuple)
+        
+#     )
+
+
+
+# @app.external
+# def readItem(store_id: abi.String, *, output: VaccineItem) -> Expr:
+#     return app.state.inventory[store_id.get()].store_into(output)
+
+
+@app.external
+def set_vaccine_quantity(store_id: abi.String,vaccine_data: abi.String, quantity: abi.Uint64) -> Expr:
+    vaccine_data = vaccine_data.get()
+    
     return Seq(
-        vaccineTuple.set(vaccine_name,quantity,vaccineManufacturer,desc),
-    app.state.inventory[store_id.get()].set(vaccineTuple)
+    app.state.inventory[store_id.get()].set(vaccine_data)
         
     )
 
 
-
 @app.external
-def readItem(store_id: abi.String, *, output: VaccineItem) -> Expr:
+def readItem(store_id: abi.String, *, output: abi.String) -> Expr:
     return app.state.inventory[store_id.get()].store_into(output)

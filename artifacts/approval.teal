@@ -1,6 +1,6 @@
 #pragma version 8
-intcblock 0 1 4294967296 65536
-bytecblock 0x151f7c75 0x 0x526f6c65 0x546f74616c56616363696e6573 0x41646d696e41646472657373 0x546f74616c53746f726573 0x476c6f62616c56616363696e65417661696c6162696c697479
+intcblock 0 1 4294967296
+bytecblock 0x151f7c75 0x526f6c65 0x 0x546f74616c56616363696e6573 0x41646d696e41646472657373 0x546f74616c53746f726573 0x476c6f62616c56616363696e65417661696c6162696c697479
 txn NumAppArgs
 intc_0 // 0
 ==
@@ -46,11 +46,11 @@ pushbytes 0x827c652d // "get_local_role()string"
 ==
 bnz main_l16
 txna ApplicationArgs 0
-pushbytes 0x29ffaa26 // "set_vaccine_quantity(string,string,string,string,uint64,uint64)void"
+pushbytes 0xac6d88a2 // "set_vaccine_quantity(string,string,uint64)void"
 ==
 bnz main_l15
 txna ApplicationArgs 0
-pushbytes 0x387109b4 // "readItem(string)(string,uint64,string,string)"
+pushbytes 0x20a30e45 // "readItem(string)string"
 ==
 bnz main_l14
 err
@@ -65,9 +65,9 @@ intc_0 // 0
 assert
 txna ApplicationArgs 1
 callsub readItem_12
-store 11
+store 8
 bytec_0 // 0x151f7c75
-load 11
+load 8
 concat
 log
 intc_1 // 1
@@ -86,21 +86,11 @@ store 5
 txna ApplicationArgs 2
 store 6
 txna ApplicationArgs 3
+btoi
 store 7
-txna ApplicationArgs 4
-store 8
-txna ApplicationArgs 5
-btoi
-store 9
-txna ApplicationArgs 6
-btoi
-store 10
 load 5
 load 6
 load 7
-load 8
-load 9
-load 10
 callsub setvaccinequantity_11
 intc_1 // 1
 return
@@ -296,7 +286,7 @@ return
 optin_0:
 proto 0 0
 txn Sender
-bytec_2 // "Role"
+bytec_1 // "Role"
 pushbytes 0x55736572 // "User"
 app_local_put
 retsub
@@ -333,7 +323,7 @@ retsub
 // get_admin
 getadmin_4:
 proto 0 1
-bytec_1 // ""
+bytec_2 // ""
 bytec 4 // "AdminAddress"
 app_global_get
 frame_bury 0
@@ -390,7 +380,7 @@ retsub
 setlocalrole_9:
 proto 1 0
 txn Sender
-bytec_2 // "Role"
+bytec_1 // "Role"
 frame_dig -1
 extract 2 0
 app_local_put
@@ -399,9 +389,9 @@ retsub
 // get_local_role
 getlocalrole_10:
 proto 0 1
-bytec_1 // ""
+bytec_2 // ""
 txn Sender
-bytec_2 // "Role"
+bytec_1 // "Role"
 app_local_get
 frame_bury 0
 frame_dig 0
@@ -415,90 +405,29 @@ retsub
 
 // set_vaccine_quantity
 setvaccinequantity_11:
-proto 6 0
-bytec_1 // ""
-intc_0 // 0
-dup
-bytec_1 // ""
-dup
-frame_dig -5
-frame_bury 4
-frame_dig 4
-frame_bury 3
-pushint 14 // 14
-frame_bury 1
-frame_dig 1
-frame_dig 4
-len
-+
-frame_bury 2
-frame_dig 2
-intc_3 // 65536
-<
-assert
-frame_dig 1
-itob
-extract 6 0
-frame_dig -1
-itob
-concat
-frame_dig -4
-frame_bury 4
-frame_dig 3
-frame_dig 4
-concat
-frame_bury 3
-frame_dig 2
-frame_bury 1
-frame_dig 1
-frame_dig 4
-len
-+
-frame_bury 2
-frame_dig 2
-intc_3 // 65536
-<
-assert
-frame_dig 1
-itob
-extract 6 0
-concat
+proto 3 0
 frame_dig -3
-frame_bury 4
-frame_dig 3
-frame_dig 4
-concat
-frame_bury 3
-frame_dig 2
-frame_bury 1
-frame_dig 1
-itob
-extract 6 0
-concat
-frame_dig 3
-concat
-frame_bury 0
-frame_dig -6
 extract 2 0
 box_del
 pop
-frame_dig -6
+frame_dig -3
 extract 2 0
-frame_dig 0
+frame_dig -2
+extract 2 0
 box_put
 retsub
 
 // readItem
 readItem_12:
 proto 1 1
-bytec_1 // ""
+bytec_2 // ""
 frame_dig -1
 extract 2 0
 box_get
-store 13
-store 12
-load 13
+store 10
+store 9
+load 10
 assert
-load 12
+load 9
 frame_bury 0
 retsub

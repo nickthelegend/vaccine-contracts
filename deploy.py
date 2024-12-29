@@ -87,7 +87,54 @@ except:
 result = app_client.call(get_local_role)
 print(f"The Role of this account is : {result.return_value}")
 
-app_client.call(set_vaccine_quantity, store_id="sad",vaccine_name="Covaccine",vaccineManufacturer="sad",desc="sad",vaccine_id=123,quantity=120, boxes=[(app_client.app_id, "sad")])   
+
+
+
+
+
+
+
+
+
+
+# app_client.call(set_vaccine_quantity, store_id="sad",vaccine_name="Covaccine",vaccineManufacturer="sad",desc="sad",vaccine_id=123,quantity=120, boxes=[(app_client.app_id, "sad")])   
+
+# try:
+#     value = app_client.call(
+#         readItem, store_id="sad", boxes=[(app_client.app_id, "sad")]
+#     )
+#     print(value.return_value)
+# except LogicError as e:
+#     print("Apple box no longer exists")
+
+import json
+
+# Define the Python object properly
+py_object = {
+    "store": [
+        {"name": "sad", "desc": "sad", "quantity": 23},
+        {"name": "asd", "desc": "asd", "quantity": "23"}
+    ]
+}
+
+# Encoding to JSON
+json_string = json.dumps(py_object)
+
+# Output the JSON string and its type
+print(json_string)
+print(type(json_string))
+
+
+app_client.call(set_vaccine_quantity, store_id="sad",vaccine_data=json_string,quantity=120, boxes=[(app_client.app_id, "sad")])   
+
+
+
+
+
+
+import time
+time.sleep(30)
+
 
 try:
     value = app_client.call(
