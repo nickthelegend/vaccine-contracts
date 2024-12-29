@@ -108,6 +108,7 @@ print(f"The Role of this account is : {result.return_value}")
 #     print("Apple box no longer exists")
 
 import json
+import base64
 
 # Define the Python object properly
 py_object = {
@@ -119,10 +120,14 @@ py_object = {
 
 # Encoding to JSON
 json_string = json.dumps(py_object)
+# base64_encoded = base64.b64encode(json_string.encode('utf-8')).decode('utf-8')
+# base64_encoded = base64.b64encode(base64_encoded.encode('utf-8')).decode('utf-8')
 
 # Output the JSON string and its type
-print(json_string)
-print(type(json_string))
+# print(json_string)
+# # print(base64_encoded)
+
+# print(type(json_string))
 
 
 app_client.call(set_vaccine_quantity, store_id="sad",vaccine_data=json_string,quantity=120, boxes=[(app_client.app_id, "sad")])   
@@ -133,14 +138,15 @@ app_client.call(set_vaccine_quantity, store_id="sad",vaccine_data=json_string,qu
 
 
 import time
-time.sleep(30)
+# time.sleep(3)
 
 
 try:
     value = app_client.call(
         readItem, store_id="sad", boxes=[(app_client.app_id, "sad")]
     )
-    print(value.return_value)
+    # print(dir(value.raw_value))
+    print(value.raw_value.decode())
 except LogicError as e:
     print("Apple box no longer exists")
 
